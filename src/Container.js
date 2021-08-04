@@ -3,10 +3,12 @@ import './App.css'
 import Home from './components/Home'
 import NavBar from './components/Nav'
 import graphThemes from './graphThemes'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import datacsv from './studentdata.csv'
 import Papa from 'papaparse'
 import Student from './components/Student'
+import StudentNav from './components/StudentNav'
+import Assignment from './components/Assignment'
 
 
 function Container() {
@@ -49,7 +51,7 @@ function Container() {
     const studentNames = getStudentNames()
     const projectNames = getAssignmentNames()
 
-    const averages = projectNames.map(assignment => {
+    const assignmentAverages = projectNames.map((assignment, index) => {
         const assignmentData = data.filter(item => {
             return assignment === item.assignmentName
         })
@@ -62,54 +64,96 @@ function Container() {
         return {
             assignment: assignment,
             averageDifficulty: averageDifficulty,
-            averageFun: averageFun
+            averageFun: averageFun,
+            key: index
         }
     })
 
-    const studentLinkList = studentNames.map(student => {
+    const getPerStudentData = (data, studentName) => {
+        const studentData = data.filter(item => item.studentName === studentName)
+
+        const assignmentNumbers = projectNames.map((assignment, index) => {
+            const assignmentData = studentData.filter(item => {
+                return assignment === item.assignmentName
+            })
+            const diff = assignmentData.map(item => item.difficulty)
+            const fun = assignmentData.map(item => item.fun)
+            return {
+                assignment: assignment,
+                difficulty: diff[0],
+                fun: fun[0],
+                key: index
+            }
+        })
+        return assignmentNumbers
+    }
+
+    const getPerAssignmentData = (data, assignmentName) => {
+        const assignmentData = data.filter(item => item.assignmentName === assignmentName)
+
+        const studentNumbers = studentNames.map((student, index) => {
+            const studentData = assignmentData.filter(item => {
+                return student === item.studentName
+            })
+            const diff = studentData.map(item => item.difficulty)
+            const fun = studentData.map(item => item.fun)
+            return {
+                student: student,
+                difficulty: diff[0],
+                fun: fun[0],
+                key: index
+            }
+        })
+        return studentNumbers
+    }
+
+    const studentSwitchList = studentNames.map((student, index) => {
         return (
-            <li>
-                <Link to={student}>{student}</Link>
-            </li>)
-    })
-    const studentSwitchList = studentNames.map(student => {
-        console.log(student)
-        return (
-            <Route path={student}>
-                <Student studentName={student} />
+            <Route path={`/${student}`}>
+                <Student
+                    studentName={student}
+                    studentData={data}
+                    graphThemes={graphThemes}
+                    getPerStudentData={getPerStudentData}
+                    key={index}
+                />
             </Route>
         )
     })
 
-    console.log(studentSwitchList)
-    console.log(studentLinkList)
+    const assignmentSwitchList = projectNames.map((item, index) => {
+        return (
+            <Route path={`/${item}`}>
+                <Assignment
+                    assignmentName={item}
+                    assignmentData={data}
+                    graphThemes={graphThemes}
+                    getPerAssignmentData={getPerAssignmentData}
+                    key={index}
+                />
+            </Route>
+        )
+    })
+
+
 
     return (
-        <Router>
-            <div className='student-nav'>
-                <NavBar />
-                <nav>
-                    <ul>
-                        {studentLinkList}
-                    </ul>
-                </nav>
+        < Router >
+            <div className='container'>
+                <NavBar assignmentNames={projectNames} />
+                <StudentNav studentNames={studentNames} />
                 <main>
                     <Switch>
                         {studentSwitchList}
-                        <Route path='/Aranka'>
-                            <Student studentName='Aranka' />
-                        </Route>
-                        <Route path='/Evelyn'>
-                            <Student studentName='Evelyn' />
-                        </Route>
+                        {assignmentSwitchList}
+
                         <Route path='/'>
-                            <Home averages={averages} graphThemes={graphThemes} />
+                            <Home averages={assignmentAverages} graphThemes={graphThemes} />
                         </Route>
                     </Switch>
                 </main>
-
             </div>
-        </Router>
+        </Router >
     );
 }
 

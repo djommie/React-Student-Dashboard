@@ -1,10 +1,13 @@
-import react from 'react'
-import BarChart from './BarChart'
+import BarChartAll from './BarChartAll'
 
 function Home(props) {
     return (
         <div>
-            <BarChart averages={props.averages} graphThemes={props.graphThemes} />
+            <h1 className='chart-title'>Student Dashboard</h1>
+            <BarChartAll
+                averages={props.averages}
+                graphThemes={props.graphThemes}
+            />
         </div>
     )
 }

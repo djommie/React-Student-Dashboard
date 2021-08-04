@@ -1,5 +1,158 @@
 .App {
   text-align: center;
+  margin: 0;
+  padding: 0
 }
 
+.container {
+  font-family: "Open Sans", "Trebuchet MS", arial, verdana, sans-serif;
+  display: grid;
+  grid-template-columns: 7vw 85vw 8vw;
+  grid-template-rows: 6vh 94vh;
+  grid-template-areas: 
+    "navbar navbar navbar"
+    "student-nav main main"
+}
 
+.nav-bar {
+  grid-area: navbar;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+}
+
+.student-nav {
+  grid-area: student-nav;
+  display:flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: flex-start;
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.2);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+ .main {
+   grid-area: main;
+ }
+
+ .chart-title{
+   font-size: 46px;
+   color: darkslategray;
+ }
+
+.nav-text-link {
+  float: left;
+  display: block;
+  color: darkslategray;
+  text-align: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 24px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.text-link {
+  float: left;
+  display: block;
+  color: darkslategray;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.nav-bar .icon {
+  display: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+  padding-right: 150px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.dropdown .dropbtn {
+  font-size: 24px;
+  border: none;
+  outline: none;
+  color: darkslategrey;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  overflow-y: scroll; height: 90%
+}
+
+.dropdown-links {
+  float: none;
+  color: black;
+  padding: 4px 7px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin:0px 5px 0px 5px;
+  border-radius: 5px
+}
+
+.dropdown-links:hover{
+  background-color: rgb(235, 235, 247);
+}
+
+.nav-bar a:hover, .dropdown:hover .dropbtn {
+  color: steelblue;
+}
+
+.student-nav a:hover, .dropdown:hover .dropbtn {
+  color: steelblue;
+}
+
+.dropdown-content:hover {
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media only screen  and (max-width : 1824px) {
+  .chart-title{
+    font-size: 36px;
+  }
+  .dropdown .dropbtn {
+    font-size: 20px;
+  }
+  .nav-text-link {
+    font-size: 20px;
+  }
+  .text-link {
+    font-size: 16px;
+  }
+}
+
+@media only screen  and (max-width : 1224px) {
+  .chart-title{
+    font-size: 30px;
+  }
+  .dropdown .dropbtn {
+    font-size: 18px;
+  }
+  .nav-text-link {
+    font-size: 18px;
+  }
+  .text-link {
+    font-size: 14px;
+  }
+}

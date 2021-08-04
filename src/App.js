@@ -4,11 +4,13 @@ import Container from './Container'
 
 
 class App extends React.Component {
+  constructor() {
+    super()
+  }
 
   render() {
     return (
       <div className="App">
-        <h1>Winc Student Dashboard</h1>
         <Container />
       </div>
     );

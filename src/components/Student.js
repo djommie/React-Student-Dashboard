@@ -1,8 +1,16 @@
 import React from 'react'
+import BarChartStudent from './BarChartStudent'
 
 function Student(props) {
+    const studentData = props.getPerStudentData(props.studentData, props.studentName)
     return (
-        <h2>{props.studentName}</h2>
+        <div>
+            <h1 className="chart-title">{props.studentName}</h1>
+            <BarChartStudent
+                studentData={studentData}
+                graphThemes={props.graphThemes}
+            />
+        </div>
     )
 }
 

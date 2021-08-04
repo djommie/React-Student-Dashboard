@@ -1,22 +1,18 @@
 const graphThemes = {
-  area: {
+  legend: {
+    gutter: 15,
+    orientation: "horizontal",
+    titleOrientation: "top",
     style: {
       data: {
-        fill: "#212121",
+        type: "square",
       },
       labels: {
-        fontFamily: "Roboto, sans-serif",
-        fontSize: 13,
+        fontFamily: "'Roboto', 'Helvetica Neue', Helvetica, sans-serif",
+        fontSize: 14,
         letterSpacing: "normal",
-        padding: 8,
-        fill: "#666666",
-        stroke: "transparent",
-        strokeWidth: 0,
       },
-    },
-    width: 350,
-    height: 550,
-    padding: 50,
+    }
   },
   axis: {
     style: {
@@ -26,16 +22,6 @@ const graphThemes = {
         strokeWidth: 1,
         strokeLinecap: "round",
         strokeLinejoin: "round",
-      },
-      axisLabel: {
-        textAnchor: "middle",
-        fontFamily: "Roboto, sans-serif",
-        fontSize: 6,
-        letterSpacing: "normal",
-        padding: 50,
-        fill: "#ccc",
-        stroke: "transparent",
-        strokeWidth: 0,
       },
       grid: {
         fill: "none",
@@ -51,46 +37,24 @@ const graphThemes = {
       },
       tickLabels: {
         fontFamily: "Roboto, sans-serif",
-        fontSize: 7,
+        fontSize: 8.3,
         letterSpacing: "normal",
         padding: 4,
-        margin: 50,
         fill: "#666",
         stroke: "transparent",
         strokeWidth: 0,
       },
     },
-    width: 350,
-    height: 450,
-    padding: 150,
   },
   bar: {
     style: {
       data: {
-        padding: 0,
-        strokeWidth: 0,
-      },
-      labels: {
-        fontFamily: "Roboto, sans-serif",
-        fontSize: 9,
-        letterSpacing: "normal",
-        padding: 4,
-        fill: "#666666",
-        stroke: "transparent",
         strokeWidth: 0,
       },
     },
-    width: 350,
-    height: 350,
-    padding: 4,
   },
   chart: {
     width: 800,
-    height: 400,
-    padding: 50,
-  },
-  group: {
-    width: 350,
     height: 350,
     padding: 50,
   },
